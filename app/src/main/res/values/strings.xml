@@ -8,4 +8,5 @@
     <string name="stop_button">Stop</string>
     <string name="timer_default">00:00:00</string>
     <string name="timer_milliseconds_default">000</string>
+    <string name="save_button">Save workout</string>
 </resources>

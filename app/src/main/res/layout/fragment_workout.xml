@@ -5,14 +5,85 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.workout.WorkoutFragment">
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/timer_fragment_container"
-        android:name="dev.kaoala.habittracker.ui.TimerNum"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+
+    <TextView
+        android:id="@+id/timer_text"
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
+        android:layout_marginStart="188dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="188dp"
+        android:layout_marginBottom="388dp"
+        android:text="@string/timer_default"
+        android:textSize="60sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout="@layout/timer_layout" />
+        app:layout_constraintVertical_bias="0.649" />
+
+    <Button
+        android:id="@+id/timer_button"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="88dp"
+        android:background="@drawable/play_button"
+        android:contentDescription="@string/play_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/timer_text"
+        app:layout_constraintVertical_bias="0.245" />
+
+    <Button
+        android:id="@+id/timer_clear"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginEnd="88dp"
+        android:background="@drawable/stop_button"
+        android:contentDescription="@string/stop_button"
+        app:layout_constraintBottom_toBottomOf="@+id/timer_button"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/timer_button"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/timer_milliseconds"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/timer_milliseconds_default"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/timer_text"
+        app:layout_constraintStart_toEndOf="@+id/timer_text" />
+
+    <Button
+        android:id="@+id/save_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="117dp"
+        android:text="@string/save_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/timer_clear"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/timer_button"
+        app:layout_constraintTop_toTopOf="@+id/timer_button"
+        app:layout_constraintVertical_bias="0.383" />
+
+    <TextView
+        android:id="@+id/text_output"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:textAlignment="center"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/timer_clear"
+        app:layout_constraintStart_toStartOf="@+id/timer_button"
+        app:layout_constraintTop_toTopOf="@+id/save_button"
+        app:layout_constraintVertical_bias="0.0" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
