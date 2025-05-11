@@ -3,9 +3,9 @@
     <string name="title_home">Home</string>
     <string name="title_workout">Workout</string>
     <string name="title_notifications">Notifications</string>
-    <string name="play_button">Play button</string>
-    <string name="pause_button">Pause button</string>
-    <string name="stop_button">Stop button</string>
-    <string name="timer_default">test default</string>
-    <string name="timer_milliseconds_default">default</string>
+    <string name="play_button">Play</string>
+    <string name="pause_button">Pause</string>
+    <string name="stop_button">Stop</string>
+    <string name="timer_default">00:00:00</string>
+    <string name="timer_milliseconds_default">000</string>
 </resources>
