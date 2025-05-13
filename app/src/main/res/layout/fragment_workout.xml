@@ -9,10 +9,9 @@
     <TextView
         android:id="@+id/timer_text"
         android:layout_width="wrap_content"
-        android:layout_height="80dp"
-        android:layout_marginStart="188dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="188dp"
         android:layout_marginBottom="388dp"
         android:text="@string/timer_default"
         android:textSize="60sp"
@@ -27,12 +26,11 @@
         android:id="@+id/timer_button"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_marginStart="88dp"
         android:background="@drawable/play_button"
         android:contentDescription="@string/play_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/timer_text"
         app:layout_constraintTop_toTopOf="@+id/timer_text"
         app:layout_constraintVertical_bias="0.245" />
 
@@ -40,36 +38,33 @@
         android:id="@+id/timer_clear"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_marginEnd="88dp"
         android:background="@drawable/stop_button"
         android:contentDescription="@string/stop_button"
         app:layout_constraintBottom_toBottomOf="@+id/timer_button"
         app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/timer_text"
         app:layout_constraintTop_toTopOf="@+id/timer_button"
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
-        android:id="@+id/timer_milliseconds"
+        android:id="@+id/timer_centiseconds"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/timer_milliseconds_default"
+        android:text="@string/timer_centiseconds_default"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/timer_text"
         app:layout_constraintStart_toEndOf="@+id/timer_text" />
 
     <Button
         android:id="@+id/save_button"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
         android:layout_marginBottom="117dp"
+        android:layout_gravity="center"
         android:text="@string/save_button"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/timer_clear"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/timer_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/timer_button"
         app:layout_constraintVertical_bias="0.383" />
 

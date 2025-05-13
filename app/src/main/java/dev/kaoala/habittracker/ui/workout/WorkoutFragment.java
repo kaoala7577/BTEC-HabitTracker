@@ -56,18 +56,18 @@ public class WorkoutFragment extends Fragment implements View.OnClickListener {
                     }
 
                 }
-            }, 0, 1);
+            }, 0, 10);
         }
     }
 
     private void updateTimerText() {
-        int milliseconds = timerCount % 1000;
+        int centiseconds = timerCount % 100;
         binding.timerText.setText(formatTimer(timerCount));
-        binding.timerMilliseconds.setText(String.format(Locale.getDefault(), "%1$03d", milliseconds));
+        binding.timerCentiseconds.setText(String.format(Locale.getDefault(), "%1$02d", centiseconds));
     }
 
     private String formatTimer(int time) {
-        int seconds = time/1000;
+        int seconds = time/100;
         int minutes = seconds/60;
         int hours = minutes/60;
 
@@ -104,6 +104,7 @@ public class WorkoutFragment extends Fragment implements View.OnClickListener {
             timerCount = 0;
             updateTimerText();
         } else if (v == binding.saveButton) {
+            if (timerCount == 0) return;
             workoutCount += 1;
             if(workoutCount == 1) binding.textOutput.setVisibility(View.VISIBLE);
             totalTime += lastTime;

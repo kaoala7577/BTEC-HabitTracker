@@ -9,25 +9,32 @@
     <TextView
         android:id="@+id/water_total"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginTop="196dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="188dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="188dp"
+        android:layout_marginBottom="388dp"
         android:text="@string/water_default"
         android:textSize="60sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.649"/>
 
     <TableLayout
-        android:id="@+id/tableLayout2"
+        android:id="@+id/tableLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="35dp"
-        android:layout_marginTop="180dp"
         android:layout_marginEnd="35dp"
         android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/water_total">
+        app:layout_constraintTop_toTopOf="@+id/water_total"
+        app:layout_constraintVertical_bias="0.3">
 
         <TableRow
             android:layout_width="match_parent"
@@ -141,6 +148,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
+                android:contentDescription="@string/button_minus_full"
                 android:text="@string/button_minus" />
 
             <Button
@@ -159,6 +167,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
+                android:contentDescription="@string/button_plus_full"
                 android:text="@string/button_plus" />
         </TableRow>
     </TableLayout>
@@ -167,9 +176,8 @@
         android:id="@+id/water_input"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="-32dp"
         android:text="@string/water_default"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/tableLayout2"
-        app:layout_constraintTop_toTopOf="@+id/tableLayout2" />
+        app:layout_constraintBottom_toTopOf="@+id/tableLayout"
+        app:layout_constraintEnd_toEndOf="@+id/tableLayout" />
 </androidx.constraintlayout.widget.ConstraintLayout>

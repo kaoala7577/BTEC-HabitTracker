@@ -4,10 +4,12 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import java.util.Arrays;
 import java.util.Locale;
 
 import dev.kaoala.habittracker.R;
@@ -22,18 +24,14 @@ public class WaterFragment extends Fragment implements View.OnClickListener {
                              ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentWaterBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-        binding.button0.setOnClickListener(this);
-        binding.button1.setOnClickListener(this);
-        binding.button2.setOnClickListener(this);
-        binding.button3.setOnClickListener(this);
-        binding.button4.setOnClickListener(this);
-        binding.button5.setOnClickListener(this);
-        binding.button6.setOnClickListener(this);
-        binding.button7.setOnClickListener(this);
-        binding.button8.setOnClickListener(this);
-        binding.button9.setOnClickListener(this);
-        binding.buttonPlus.setOnClickListener(this);
-        binding.buttonMinus.setOnClickListener(this);
+
+        for (Button button : Arrays.asList(
+                binding.button7, binding.button8, binding.button9,
+                binding.button4, binding.button5, binding.button6,
+                binding.button1, binding.button2, binding.button3,
+                binding.buttonPlus, binding.button0, binding.buttonMinus)) {
+            button.setOnClickListener(this);
+        }
         return root;
     }
 
