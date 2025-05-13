@@ -46,11 +46,11 @@ public class WaterFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if(v == binding.buttonPlus) {
-            waterTotal += Integer.parseInt(waterInput);
+            if(!waterInput.isEmpty()) waterTotal += Integer.parseInt(waterInput);
             updateTotalText();
             resetInput();
         } else if(v == binding.buttonMinus) {
-            waterTotal -= Integer.parseInt(waterInput);
+            if(!waterInput.isEmpty()) waterTotal -= Integer.parseInt(waterInput);
             updateTotalText();
             resetInput();
         } else {
@@ -68,27 +68,7 @@ public class WaterFragment extends Fragment implements View.OnClickListener {
     }
 
     private void handleNumberInput(View v) {
-        if (v == binding.button0) {
-            waterInput += "0";
-        } else if (v == binding.button1) {
-            waterInput += "1";
-        } else if (v == binding.button2) {
-            waterInput += "2";
-        } else if (v == binding.button3) {
-            waterInput += "3";
-        } else if (v == binding.button4) {
-            waterInput += "4";
-        } else if (v == binding.button5) {
-            waterInput += "5";
-        } else if (v == binding.button6) {
-            waterInput += "6";
-        } else if (v == binding.button7) {
-            waterInput += "7";
-        } else if (v == binding.button8) {
-            waterInput += "8";
-        } else if (v == binding.button9) {
-            waterInput += "9";
-        }
-        binding.waterInput.setText(String.format(Locale.getDefault(), "%sml", waterInput));
+        if(waterInput.length() < 5) waterInput += ((android.widget.Button) v).getText().toString();
+        binding.waterInput.setText(String.format(Locale.getDefault(), "%,dml", Integer.parseInt(waterInput)));
     }
 }
