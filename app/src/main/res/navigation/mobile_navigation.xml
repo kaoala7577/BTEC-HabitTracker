@@ -18,8 +18,8 @@
         tools:layout="@layout/fragment_workout" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="dev.kaoala.habittracker.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_water"
+        android:name="dev.kaoala.habittracker.ui.water.WaterFragment"
+        android:label="@string/title_water"
+        tools:layout="@layout/fragment_water" />
 </navigation>

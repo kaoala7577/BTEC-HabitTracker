@@ -10,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 
 import java.util.Locale;
 import java.util.Timer;
@@ -32,9 +31,6 @@ public class WorkoutFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        WorkoutViewModel workoutViewModel =
-                new ViewModelProvider(this).get(WorkoutViewModel.class);
-
         binding = FragmentWorkoutBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         binding.timerButton.setOnClickListener(this);
