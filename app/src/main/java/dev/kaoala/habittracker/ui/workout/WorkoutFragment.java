@@ -20,7 +20,8 @@ import dev.kaoala.habittracker.databinding.FragmentWorkoutBinding;
 
 public class WorkoutFragment extends Fragment implements View.OnClickListener {
     private FragmentWorkoutBinding binding;
-    Boolean pause = true;
+    Boolean isPaused = true;
+    Boolean currentWorkout = false;
     int timerCount = 0;
     int lastTime;
     int totalTime;
@@ -30,17 +31,17 @@ public class WorkoutFragment extends Fragment implements View.OnClickListener {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
+                ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentWorkoutBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         binding.timerButton.setOnClickListener(this);
         binding.timerClear.setOnClickListener(this);
         binding.saveButton.setOnClickListener(this);
-        start_timer();
+        initiateTimer();
         return root;
     }
 
-    public void start_timer() {
+    public void initiateTimer() {
         if (timer == null) {
             timer = new Timer();
             timer.schedule(new TimerTask() {
@@ -48,7 +49,7 @@ public class WorkoutFragment extends Fragment implements View.OnClickListener {
                 public void run() {
                     if(getActivity() != null) {
                         getActivity().runOnUiThread(() -> {
-                            if (!pause) {
+                            if (!isPaused) {
                                 timerCount += 1;
                                 updateTimerText();
                             }
@@ -58,6 +59,60 @@ public class WorkoutFragment extends Fragment implements View.OnClickListener {
                 }
             }, 0, 10);
         }
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v == binding.timerButton) {
+            if (isPaused) startTimer();
+            else pauseTimer();
+        } else if (v == binding.timerClear) {
+            clearTimer();
+        } else if (v == binding.saveButton) {
+            saveWorkout();
+        }
+    }
+
+    public void startTimer() {
+        isPaused = false;
+        Drawable pauseDrawable = ContextCompat.getDrawable(requireContext(),R.drawable.pause_button);
+        binding.timerButton.setBackground(pauseDrawable);
+        binding.timerButton.setContentDescription(requireContext().getString(R.string.pause_button));
+    }
+
+    public void pauseTimer() {
+        isPaused = true;
+        Drawable playDrawable = ContextCompat.getDrawable(requireContext(),R.drawable.play_button);
+        binding.timerButton.setBackground(playDrawable);
+        binding.timerButton.setContentDescription(requireContext().getString(R.string.play_button));
+    }
+
+    public void clearTimer() {
+        pauseTimer();
+        timerCount = 0;
+        currentWorkout = false;
+        updateTimerText();
+    }
+
+    public void saveWorkout() {
+        if (timerCount == 0) return;
+        if(currentWorkout) {
+            totalTime += timerCount - lastTime;
+            lastTime = timerCount;
+        } else {
+            workoutCount += 1;
+            if(workoutCount == 1) binding.textOutput.setVisibility(View.VISIBLE);
+            currentWorkout = true;
+            lastTime = timerCount;
+            totalTime += lastTime;
+        }
+        binding.textOutput.setText(String.format(
+                Locale.getDefault(),
+                "Last time: %1$s\nTotal time: %2$s\nTotal workouts: %3$d",
+                formatTimer(lastTime),
+                formatTimer(totalTime),
+                workoutCount
+        ));
     }
 
     private void updateTimerText() {
@@ -78,44 +133,6 @@ public class WorkoutFragment extends Fragment implements View.OnClickListener {
                 minutes % 60,
                 seconds % 60
         );
-    }
-
-    private void swapPlayButton() {
-        if (!pause) {
-            Drawable pauseDrawable = ContextCompat.getDrawable(requireContext(),R.drawable.pause_button);
-            binding.timerButton.setBackground(pauseDrawable);
-            binding.timerButton.setContentDescription("@string/pause_button");
-        } else {
-            Drawable playDrawable = ContextCompat.getDrawable(requireContext(),R.drawable.play_button);
-            binding.timerButton.setBackground(playDrawable);
-            binding.timerButton.setContentDescription("@string/play_button");
-        }
-    }
-
-    @Override
-    public void onClick(View v) {
-        if (v == binding.timerButton) {
-            pause = !pause;
-            swapPlayButton();
-            if(pause) lastTime = timerCount;
-        } else if (v == binding.timerClear) {
-            pause = true;
-            swapPlayButton();
-            timerCount = 0;
-            updateTimerText();
-        } else if (v == binding.saveButton) {
-            if (timerCount == 0) return;
-            workoutCount += 1;
-            if(workoutCount == 1) binding.textOutput.setVisibility(View.VISIBLE);
-            totalTime += lastTime;
-            binding.textOutput.setText(String.format(
-                    Locale.getDefault(),
-                    "Last time: %1$s\nTotal time: %2$s\nTotal workouts: %3$d",
-                    formatTimer(lastTime),
-                    formatTimer(totalTime),
-                    workoutCount
-            ));
-        }
     }
 
     @Override
