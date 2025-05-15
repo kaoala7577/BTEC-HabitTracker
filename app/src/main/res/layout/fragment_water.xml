@@ -42,6 +42,42 @@
             android:gravity="center_horizontal">
 
             <Button
+                android:id="@+id/button_reset"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:text="@string/button_reset" />
+
+            <Button
+                android:id="@+id/button_clear"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:text="@string/button_clear" />
+
+            <ImageButton
+                android:id="@+id/button_back"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:contentDescription="@string/button_back"
+                android:src="@drawable/backspace"
+                app:tint="?android:colorPrimary" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal">
+
+            <Button
                 android:id="@+id/button7"
                 style="?android:attr/buttonBarStyle"
                 android:layout_width="wrap_content"
@@ -141,15 +177,16 @@
             android:layout_height="match_parent"
             android:gravity="center_horizontal">
 
-            <Button
+            <ImageButton
                 android:id="@+id/button_minus"
-                style="?android:attr/buttonBarNegativeButtonStyle"
+                style="?android:attr/borderlessButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:contentDescription="@string/button_minus_full"
-                android:text="@string/button_minus" />
+                android:contentDescription="@string/button_minus"
+                android:src="@drawable/minus"
+                app:tint="?android:colorPrimary" />
 
             <Button
                 android:id="@+id/button0"
@@ -160,15 +197,16 @@
                 android:layout_marginRight="5dp"
                 android:text="@string/button0" />
 
-            <Button
+            <ImageButton
                 android:id="@+id/button_plus"
-                style="?android:attr/buttonBarPositiveButtonStyle"
+                style="?android:attr/borderlessButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:contentDescription="@string/button_plus_full"
-                android:text="@string/button_plus" />
+                android:contentDescription="@string/button_plus"
+                android:src="@drawable/plus"
+                app:tint="?android:colorPrimary" />
         </TableRow>
     </TableLayout>
 
