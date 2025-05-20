@@ -140,6 +140,7 @@ public class WorkoutFragment extends Fragment implements View.OnClickListener {
         super.onDestroyView();
         if(timer != null){
             timer.cancel();
+            clearTimer();
             timer = null;
         }
         binding = null;

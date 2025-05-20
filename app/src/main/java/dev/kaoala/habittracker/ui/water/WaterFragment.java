@@ -45,6 +45,7 @@ public class WaterFragment extends Fragment implements View.OnClickListener {
         } else if(v == binding.buttonMinus) {
             if (!waterInput.isEmpty()) {
                 waterTotal -= Integer.parseInt(waterInput);
+                if (waterTotal < 0) waterTotal = 0;
                 updateTotalText();
             }
         } else if (v == binding.buttonReset) {
