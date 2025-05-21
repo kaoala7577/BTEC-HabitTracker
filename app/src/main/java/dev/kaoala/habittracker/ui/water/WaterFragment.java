@@ -15,9 +15,9 @@ import dev.kaoala.habittracker.R;
 import dev.kaoala.habittracker.databinding.FragmentWaterBinding;
 
 public class WaterFragment extends Fragment implements View.OnClickListener {
-    private FragmentWaterBinding binding;
     int waterTotal = 0;
     String waterInput = "";
+    private FragmentWaterBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -45,6 +45,7 @@ public class WaterFragment extends Fragment implements View.OnClickListener {
         } else if(v == binding.buttonMinus) {
             if (!waterInput.isEmpty()) {
                 waterTotal -= Integer.parseInt(waterInput);
+                // disallow negative values
                 if (waterTotal < 0) waterTotal = 0;
                 updateTotalText();
             }
@@ -54,9 +55,7 @@ public class WaterFragment extends Fragment implements View.OnClickListener {
         } else if (v == binding.buttonClear) {
             resetInput();
         } else if (v == binding.buttonBack) {
-            if(waterInput.isEmpty()) {
-                resetInput();
-            } else {
+            if(!waterInput.isEmpty()) {
                 waterInput = waterInput.substring(0, waterInput.length() - 1);
                 if (waterInput.isEmpty()) resetInput();
                 else updateInputText();

@@ -19,7 +19,6 @@ import dev.kaoala.habittracker.R;
 import dev.kaoala.habittracker.databinding.FragmentWorkoutBinding;
 
 public class WorkoutFragment extends Fragment implements View.OnClickListener {
-    private FragmentWorkoutBinding binding;
     Boolean isPaused = true;
     Boolean currentWorkout = false;
     int timerCount = 0;
@@ -27,6 +26,7 @@ public class WorkoutFragment extends Fragment implements View.OnClickListener {
     int totalTime;
     int workoutCount = 0;
     Timer timer;
+    private FragmentWorkoutBinding binding;
 
     @Nullable
     @Override
@@ -47,7 +47,7 @@ public class WorkoutFragment extends Fragment implements View.OnClickListener {
             timer.schedule(new TimerTask() {
                 @Override
                 public void run() {
-                    if(getActivity() != null) {
+                    if (getActivity() != null) {
                         getActivity().runOnUiThread(() -> {
                             if (!isPaused) {
                                 timerCount += 1;
@@ -96,16 +96,15 @@ public class WorkoutFragment extends Fragment implements View.OnClickListener {
 
     public void saveWorkout() {
         if (timerCount == 0) return;
-        if(currentWorkout) {
-            totalTime += timerCount - lastTime;
-            lastTime = timerCount;
-        } else {
+        // if saving same workout, overwrite previous saved time
+        if (currentWorkout) totalTime += timerCount - lastTime;
+        else {
             workoutCount += 1;
-            if(workoutCount == 1) binding.textOutput.setVisibility(View.VISIBLE);
+            if (workoutCount == 1) binding.textOutput.setVisibility(View.VISIBLE);
             currentWorkout = true;
-            lastTime = timerCount;
-            totalTime += lastTime;
+            totalTime += timerCount;
         }
+        lastTime = timerCount;
         binding.textOutput.setText(String.format(
                 Locale.getDefault(),
                 "Last time: %1$s\nTotal time: %2$s\nTotal workouts: %3$d",
@@ -138,7 +137,7 @@ public class WorkoutFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        if(timer != null){
+        if (timer != null){
             timer.cancel();
             clearTimer();
             timer = null;
